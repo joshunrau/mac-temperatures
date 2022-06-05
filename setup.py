@@ -26,17 +26,11 @@ setuptools.setup(
     ],
     packages=setuptools.find_packages(where="."),
     python_requires=">=3.7",
-    entry_points={
-        'console_scripts': [
-            'mactemperatures=mactemperatures.main:main'
-        ]
-    },
     ext_modules = [
         setuptools.Extension(
             name="macsensors", 
             sources=[
-                os.path.join('mactemperatures', "macsensors", 'bindings.c'),
-                os.path.join('mactemperatures', "macsensors", 'sensors.c')
+                os.path.join('mactemperatures', 'sensors.c')
             ]
         )
     ]

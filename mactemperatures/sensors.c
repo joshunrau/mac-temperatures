@@ -2,7 +2,6 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <IOKit/hidsystem/IOHIDEventSystemClient.h>
 #include <Python.h>
-#include "sensors.h"
 
 typedef struct __IOHIDEvent *IOHIDEventRef;
 typedef struct __IOHIDServiceClient *IOHIDServiceClientRef;
@@ -92,14 +91,11 @@ PyObject* getThermalReadings(PyObject* self) {
     CFIndex lengthSensorValues = CFArrayGetCount(sensorValues);
     
     if (lengthSensorNames != lengthSensorValues) {
-        return -1;
+        return NULL;
     }
 
     PyObject *sensorReadings = PyDict_New();
-
-    PyObject *listKeys = PyList_New(lengthSensorNames);
-    PyObject *listValues = PyList_New(lengthSensorValues);
-
+    
     for (int i = 0; i < lengthSensorValues; i++) {
         CFStringRef name = CFArrayGetValueAtIndex(sensorNames, i);
         CFNumberRef value = CFArrayGetValueAtIndex(sensorValues, i);
@@ -114,3 +110,20 @@ PyObject* getThermalReadings(PyObject* self) {
     }
     return sensorReadings;
 };
+
+static struct PyMethodDef moduleMethods[] = {
+    {"get_thermal_readings", (PyCFunction)getThermalReadings, METH_NOARGS},
+    {NULL, NULL, NULL}
+};
+
+static struct PyModuleDef macsensorsModule = {
+    PyModuleDef_HEAD_INIT,
+    "macsensors",
+    NULL,
+    -1,
+    moduleMethods
+};
+
+PyMODINIT_FUNC PyInit_macsensors(void) {
+    return PyModule_Create(&macsensorsModule);
+}
