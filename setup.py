@@ -8,7 +8,7 @@ with open("README.md", "r") as file:
 
 setuptools.setup(
     name = "mactemperatures",
-    version = "0.0.1",
+    version = "0.0.2",
     author="Joshua Unrau",
     author_email="contact@joshuaunrau.com",
     description="Python Package for Obtaining Temperature Sensor Readings on M1 Macs",
