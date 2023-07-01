@@ -14,9 +14,9 @@ setuptools.setup(
     description="Python Package for Obtaining Temperature Sensor Readings on M1 Macs",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/joshunrau/MacTemperatures",
+    url="https://github.com/joshunrau/mac-temperatures",
     project_urls={
-        "Bug Tracker": "https://github.com/joshunrau/MacTemperatures/issues",
+        "Bug Tracker": "https://github.com/joshunrau/mac-temperatures/issues",
     },
     classifiers=[
         "Programming Language :: C",
